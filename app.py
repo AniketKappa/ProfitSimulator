@@ -18,7 +18,7 @@ def insight(rm, fc, mv, mor, pre, norm):
     z = x + 11 + y
 
     var_opex = z + 135
-    fix_opex = 30 / mv
+    fix_opex = 30000 / mv
 
     total_cost_live = var_opex + fix_opex
 
@@ -48,14 +48,14 @@ with col1:
     rm = st.number_input(
         "Raw Material Cost (₹/kg)",
         min_value=0.0,
-        value=300.0,
+        value=310.0,
         step=1.0
     )
 
     fc = st.number_input(
         "Farmer Compensation (₹/kg)",
         min_value=0.0,
-        value=20.0,
+        value=10.0,
         step=1.0
     )
 
@@ -71,7 +71,7 @@ with col2:
     mor = st.slider(
         "Mortality (%)",
         min_value=0.0,
-        max_value=50.0,
+        max_value=99.0,
         value=5.0,
         step=0.1
     )
@@ -79,16 +79,16 @@ with col2:
     pre = st.slider(
         "Premium (₹/kg)",
         min_value=0.0,
-        max_value=100.0,
-        value=40.0,
+        max_value=80.0,
+        value=30.0,
         step=1.0
     )
 
     mv = st.slider(
         "Monthly Production Volume (MT)",
         min_value=1.0,
-        max_value=500.0,
-        value=150.0,
+        max_value=5000.0,
+        value=3500.0,
         step=1.0
     )
 
