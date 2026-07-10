@@ -10,15 +10,17 @@ st.set_page_config(
 # Function
 # ---------------------------
 
-def insight(rm, fc, mv, mor, pre, norm):
+def insight(rm, fc, mv, fo, mor, pre, norm):
 
     x = (rm + fc + 2) / 0.98
+
     y = ((x + 11) - (rm + 8)) * (mor / (100 - mor))
 
     z = x + 11 + y
 
     var_opex = z + 135
-    fix_opex = 30000 / mv
+
+    fix_opex = fo / mv
 
     total_cost_live = var_opex + fix_opex
 
@@ -66,6 +68,13 @@ with col1:
         step=1.0
     )
 
+    fo = st.number_input(
+        "Monthly Fixed Opex (₹)",
+        min_value=0.0,
+        value=30000.0,
+        step=1000.0
+    )
+
 with col2:
 
     mor = st.slider(
@@ -100,6 +109,7 @@ live_profit, normal_profit = insight(
     rm,
     fc,
     mv,
+    fo,
     mor,
     pre,
     norm
@@ -114,12 +124,14 @@ st.markdown("---")
 c1, c2 = st.columns(2)
 
 with c1:
+
     st.metric(
         "Live Shrimp Profit",
         f"₹ {live_profit:.2f}/kg"
     )
 
 with c2:
+
     st.metric(
         "Normal Shrimp Profit",
         f"₹ {normal_profit:.2f}/kg"
@@ -132,13 +144,20 @@ st.markdown("---")
 # ---------------------------
 
 if live_profit > 0:
-    st.success("✅ Live Shrimps Profitable")
+
+    st.success(
+        "✅ Live Shrimps Profitable"
+    )
 
 else:
-    st.error("❌ Live Shrimps NOT Profitable")
 
+    st.error(
+        "❌ Live Shrimps NOT Profitable"
+    )
 
+# ---------------------------
 # Comparison
+# ---------------------------
 
 if live_profit > normal_profit:
 
@@ -155,5 +174,5 @@ elif live_profit < normal_profit:
 else:
 
     st.info(
-        "⚪ Both have equal profitability"
+        "⚪ Both Have Equal Profitability"
     )
