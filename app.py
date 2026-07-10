@@ -72,7 +72,7 @@ with col2:
         "Mortality (%)",
         min_value=0.0,
         max_value=99.0,
-        value=5.0,
+        value=10.0,
         step=0.1
     )
 
